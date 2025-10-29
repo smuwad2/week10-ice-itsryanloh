@@ -35,13 +35,17 @@
         methods: {
             deletePost(id) {
                 // TODO: Complete the delete method
+                axios.get(`${this.baseUrl}/deletePost`, { params: { id } })
+                this.posts = this.posts.filter(post => post.id != id)
             }
         }
     }
 </script>
 
 <template>
-   <!-- TODO: make use of the 'blog-post' component to display the blog posts -->
-
+    <!-- TODO: make use of the 'blog-post' component to display the blog posts -->
+    <blog-post v-for="({ subject, entry, mood, id }) in posts" :subject :entry :mood>
+        <button @click="deletePost(id)" class="btn btn-primary mt-2">Delete</button>
+    </blog-post>
 </template>
 

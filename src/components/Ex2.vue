@@ -1,7 +1,7 @@
 <script>
     // Import BlogPost component
     import blogPost from './subcomponents/BlogPost.vue'
-	import axios from 'axios'
+	  import axios from 'axios'
     export default {
         data() {
             return {
@@ -28,12 +28,15 @@
             .catch(error => {
                 this.posts = [{ entry: 'There was an error: ' + error.message }]
             })
+        },
+        components: {
+            blogPost
         }
     }
 </script>
 
 <template>
-   <!-- TODO: make use of the 'blog-post' component to display the blog posts -->
-
+    <!-- TODO: make use of the 'blog-post' component to display the blog posts -->
+    <blog-post v-for="({ subject, entry, mood }, idx) in posts" :key="idx":subject :entry :mood/>
 </template>
 
